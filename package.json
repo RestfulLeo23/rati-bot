@@ -1,0 +1,18 @@
+{
+  "name": "Rati-Bot",
+  "version": "0.0.0",
+  "description": "Rabid Autonomous Technical Interface",
+  "main": "Rati-Bot.js",
+  "scripts": {
+    "start": "node src/Rati-Bot.js"
+  },
+  "author": "Scott English",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "ffmpeg": "0.0.4",
+    "node-opus": "^0.3.3",
+    "pg-promise": "^8.7.5",
+    "ytdl-core": "^0.29.7"
+  },
+  "license": "ISC"
+}

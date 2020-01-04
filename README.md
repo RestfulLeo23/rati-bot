@@ -1,2 +1,2 @@
-# Rati-bot
-Rati discord bot
+# Rati
+Rabid Autonomous Technical Interface
