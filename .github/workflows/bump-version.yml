@@ -20,13 +20,14 @@ jobs:
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v1
-    - uses: olegtarasov/get-tag@v1
-      id: tagName
+    - name: Get tag name
+      uses: olegtarasov/get-tag@v1
+      id: tagRetriever
     - name: Build the image
-      run: docker build -t rati-bot:v${{ steps.tagName.outputs.tag }} .
+      run: docker build -t rati-bot:v${{ steps.tagRetriever.outputs.tag }} .
     - name: Docker login
       run: docker login -u=${{ secrets.DOCKER_USERNAME }} -p=${{ secrets.DOCKER_PASSWORD }}
     - name: Docker image tag
-      run: docker tag rati-bot:v$GITHUB_TAG_NAME restfulleo/rati-bot:v${{ steps.tagName.outputs.tag }}
+      run: docker tag rati-bot:v$GITHUB_TAG_NAME restfulleo/rati-bot:v${{ steps.tagRetriever.outputs.tag }}
     - name: Push image
-      run: docker push restfulleo/rati-bot:v${{ steps.tagName.outputs.tag }}
+      run: docker push restfulleo/rati-bot:v${{ steps.tagRetriever.outputs.tag }}
