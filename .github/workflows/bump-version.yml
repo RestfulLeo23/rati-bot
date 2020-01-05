@@ -16,6 +16,7 @@ jobs:
         WITH_V: true
   
   build:
+    needs: [tag]
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v1
