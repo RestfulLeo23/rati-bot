@@ -18,7 +18,7 @@ jobs:
     - name: Build the image
       run: docker build -t rati-bot:v11 .
     - name: Docker login
-      run: docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+      run: docker login -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD
     - name: Docker image tag
       run: docker tag rati-bot:v11 restfulleo/rati-bot:v11
     - name: Push image
