@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Move to Rati-bot source directory
-      run: cd rati-bot/
+      run: ls
     - name: Build the image
       run: docker build -t rati-bot:v11 .
     - name: Docker login
