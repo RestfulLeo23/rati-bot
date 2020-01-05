@@ -23,10 +23,10 @@ jobs:
     - name: Get tag name
       uses: olegtarasov/get-tag@v1
     - name: Build the image
-      run: docker build -t rati-bot:v${{ GITHUB_TAG_NAME }} .
+      run: docker build -t rati-bot:v$GITHUB_TAG_NAME .
     - name: Docker login
       run: docker login -u=${{ secrets.DOCKER_USERNAME }} -p=${{ secrets.DOCKER_PASSWORD }}
     - name: Docker image tag
-      run: docker tag rati-bot:v${{ GITHUB_TAG_NAME }} restfulleo/rati-bot:v${{ GITHUB_TAG_NAME }}
+      run: docker tag rati-bot:v$GITHUB_TAG_NAME restfulleo/rati-bot:v$GITHUB_TAG_NAME
     - name: Push image
-      run: docker push restfulleo/rati-bot:v${{ GITHUB_TAG_NAME }}
+      run: docker push restfulleo/rati-bot:v$GITHUB_TAG_NAME
