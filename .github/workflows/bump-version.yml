@@ -20,14 +20,13 @@ jobs:
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v1
-    - name: Get the version
-      id: get_version
-      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+    - name: Get tag name
+      uses: olegtarasov/get-tag@v1
     - name: Build the image
-      run: docker build -t rati-bot:v${{ steps.get_version.outputs.VERSION }} .
+      run: docker build -t rati-bot:v${{ GITHUB_TAG_NAME }} .
     - name: Docker login
       run: docker login -u=${{ secrets.DOCKER_USERNAME }} -p=${{ secrets.DOCKER_PASSWORD }}
     - name: Docker image tag
-      run: docker tag rati-bot:v${{ steps.get_version.outputs.VERSION }} restfulleo/rati-bot:v${{ steps.get_version.outputs.VERSION }}
+      run: docker tag rati-bot:v${{ GITHUB_TAG_NAME }} restfulleo/rati-bot:v${{ GITHUB_TAG_NAME }}
     - name: Push image
-      run: docker push restfulleo/rati-bot:v${{ steps.get_version.outputs.VERSION }}
+      run: docker push restfulleo/rati-bot:v${{ GITHUB_TAG_NAME }}
