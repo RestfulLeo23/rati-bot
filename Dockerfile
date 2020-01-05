@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN apt-get update && apt-get install -y ffmpeg:armhf
+RUN apt-get update && apt-get install -y ffmpeg
 RUN npm install
 
 #Run the application.
