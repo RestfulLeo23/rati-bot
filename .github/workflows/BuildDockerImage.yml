@@ -30,6 +30,6 @@ jobs:
     - name: Docker login
       run: docker login -u=${{ secrets.DOCKER_USERNAME }} -p=${{ secrets.DOCKER_PASSWORD }}
     - name: Docker image tag
-      run: docker tag rati-bot:v$GITHUB_TAG_NAME restfulleo/rati-bot:${{ steps.previoustag.outputs.tag }}
+      run: docker tag rati-bot:${{ steps.previoustag.outputs.tag }} restfulleo/rati-bot:${{ steps.previoustag.outputs.tag }}
     - name: Push image
       run: docker push restfulleo/rati-bot:${{ steps.previoustag.outputs.tag }}
