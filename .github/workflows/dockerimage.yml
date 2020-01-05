@@ -13,13 +13,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Move to Rati-bot source directory
-      run: ls
+    - name: Get the version
+      id: get_version
+      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
     - name: Build the image
-      run: docker build -t rati-bot:v11 .
+      run: docker build -t rati-bot:v${{ steps.get_version.outputs.VERSION }} .
     - name: Docker login
       run: docker login -u=${{ secrets.DOCKER_USERNAME }} -p=${{ secrets.DOCKER_PASSWORD }}
     - name: Docker image tag
-      run: docker tag rati-bot:v11 restfulleo/rati-bot:v11
+      run: docker tag rati-bot:v${{ steps.get_version.outputs.VERSION }} restfulleo/rati-bot:v${{ steps.get_version.outputs.VERSION }}
     - name: Push image
-      run: docker push restfulleo/rati-bot:v11
+      run: docker push restfulleo/rati-bot:v${{ steps.get_version.outputs.VERSION }}
