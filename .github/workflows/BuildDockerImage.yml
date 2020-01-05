@@ -1,11 +1,11 @@
-name: Bump version
+name: Build Docker Image
 on:
   push:
     branches:
       - master
 jobs:
 
-  generate tag:
+  generatetag:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -16,7 +16,7 @@ jobs:
         WITH_V: true
   
   build:
-    needs: [generate tag]
+    needs: [generatetag]
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v1
